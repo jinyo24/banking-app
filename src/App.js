@@ -5,9 +5,9 @@ import './App.css';
 import {BrowserRouter, HashRouter, Route, NavLink, Switch, UserContext} from './context.js';
 
 //Components
-import NavBar from './navbar.js';
+import NavBar from './components/navbar.js';
 import Home from './home';
-import CreateAccoount from './createaccount';
+import CreateAccount from './createaccount.js';
 import Login from './login';
 
 function App() {
@@ -16,9 +16,11 @@ function App() {
 
       <BrowserRouter> 
         <NavBar/>
-        <Route path="/" exact component={Home}/>
-        <Route path="/createaccount" exact component={CreateAccoount}/>
-        <Route path="/login" exact component={Login}/>
+        <UserContext.Provider value={{users:[{name:'yaniel',email:'yaniel@gmail.com',password:'secret',balance:100}]}}>
+          <Route path="/" exact component={Home}/>
+          <Route path="/createaccount" exact component={CreateAccount}/>
+          <Route path="/login" exact component={Login}/>
+        </UserContext.Provider>
       </BrowserRouter>
 
       <header className="App-header">
