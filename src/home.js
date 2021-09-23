@@ -7,15 +7,13 @@ function Home() {
     const ctx = React.useContext(UserContext);
     return (
         <>
-            <h1>HOME PAGE</h1>
-            <br/>
-            <p>{JSON.stringify(ctx)}</p> 
-            <br/>
-            <Card
-                header = "Welcome Page"
-                title = "This is your bank"
-                body = {<img src={imgHome} className="img-fluid" alt="logo" />}
-            />    
+            <div className="bgPage bgHome">
+                <Card
+                    header = "Welcome Page"
+                    title = "This is your bank"
+                    body = {<img src={imgHome} className="img-fluid" alt="logo" />}
+                />
+            </div>    
         </>
     );
 }
