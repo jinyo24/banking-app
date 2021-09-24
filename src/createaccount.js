@@ -1,5 +1,6 @@
 import React from 'react';
 import { UserContext } from "./context";
+import { useEffect } from 'react';
 import Card from './components/card.js'
 
 function CreateAccount() {
@@ -9,6 +10,7 @@ function CreateAccount() {
     const [email, setEmail] = React.useState('');
     const [password, setPassword] = React.useState('');
     const [passwordCheck, setPasswordCheck] = React.useState('');
+    const [btnDisable, setBtnDisable] = React.useState(true);
     
     const ctx = React.useContext(UserContext);
 
@@ -30,6 +32,14 @@ function CreateAccount() {
         return true;
     };
 
+    useEffect(()=>{
+        if (name && email && password && passwordCheck) 
+            setBtnDisable(false); 
+        else {
+            setBtnDisable(true);            
+        }   
+    },[name, email, password, passwordCheck]);
+
     function handleCreate() {
         if (!validate(name, 'name')) return;
         if (!validate(email, 'email')) return;
@@ -48,6 +58,7 @@ function CreateAccount() {
         setPasswordCheck('');
         setStatus('');
         setShow(true);
+        setBtnDisable(true);
         // alert('All clear');
     };
 
@@ -63,7 +74,7 @@ function CreateAccount() {
                         <>
                             <div className="mb-3">
                                 <label for="name" className="form-label">Name</label>
-                                <input type="text" className="form-control" id="name" placeholder="username" value={name} onChange={(e)=>setName(e.currentTarget.value)}/>
+                                <input type="text" className="form-control" id="name" placeholder="username" value={name} onChange={(e)=>setName(e.currentTarget.value)}/>                          
                             </div>
                             <div className="mb-3">
                                 <label for="email" className="form-label">Email</label>
@@ -78,7 +89,7 @@ function CreateAccount() {
                                 <input type="password" className="form-control" id="passwordCheck" placeholder="Enter your password" value={passwordCheck} onChange={(e)=>setPasswordCheck(e.currentTarget.value)}/>
                             </div>
                             <div class="col-auto">
-                                <button type="submit" class="btn btn-primary" onClick={handleCreate}>Confirm identity</button>
+                                <button type="submit" class="btn btn-primary" onClick={handleCreate} disabled={btnDisable}>Confirm identity</button>
                             </div>
                         </>
                     ) : (

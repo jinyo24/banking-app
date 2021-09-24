@@ -10,6 +10,10 @@ import CreateAccount from './createaccount.js';
 import Deposit from './deposit.js';
 
 function App() {
+
+  var tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+console.log(tooltipTriggerList)
+
   return (
     <div className="App">
       <BrowserRouter> 
@@ -28,5 +32,13 @@ function App() {
     </div>
   );
 }
+
+
+// tooltipTriggerList.Tooltip();
+
+/* var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+}) */
+
 
 export default App;
