@@ -1,9 +1,9 @@
-
+.App {
+  align-items: center;
+  justify-content: center;
+}
 
 .bgPage {
-  /* background-color: #282c34; */
-/*   background-color: #21D4FD;
-background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%); */
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -14,14 +14,63 @@ background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%); */
 }
 
 .bgHome {
-  background-color: #21D4FD;
-  background-image: linear-gradient(19deg, #21D4FD 0%, #B721FF 100%);
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+	background-size: 400% 400%;
+	animation: gradient 10s ease infinite;
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
 
 .bgCreateAccount {
-  background-color: #0093E9;
-  background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 100%);
+  background-color: #74EBD5;
+  background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);
 }
 
+.bgDeposit {
+  background-color: #08AEEA;
+  background-image: linear-gradient(0deg, #08AEEA 0%, #2AF598 100%);   
+}
+
+.bgWithdraw {
+  background-color: #FFE53B;
+  background-image: linear-gradient(147deg, #FFE53B 0%, #FF2525 74%);    
+}
+
+.bgAllData {
+  background-color: #FAACA8;
+  background-image: linear-gradient(19deg, #FAACA8 0%, #DDD6F3 100%);
+}
+
+.bgCreateAccount, .bgDeposit, .bgWithdraw, .bgAllData{
+  background-size: 200% 200%;
+  transition: background-position 1s ease-in-out;
+}
+
+.bgCreateAccount:hover, .bgDeposit:hover, .bgWithdraw:hover, .bgAllData:hover  {
+  background-position: 100% 100%;
+}
+
+.nav-link {
+  background-image: linear-gradient(to right, #212529 30%, #434343  70%, #212529  80%);
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;            
+}
+
+.nav-link:hover {
+  background-position: 120%; 
+  color: #212529;
+
+}
 
 

@@ -9,8 +9,8 @@ function Home() {
         <>
             <div className="bgPage bgHome">
                 <Card
-                    header = "Welcome Page"
-                    title = "This is your bank"
+                    header = "Welcome to BadBank"
+                    title = "Earn more, save more, grow more. It can't be bad!"
                     body = {<img src={imgHome} className="img-fluid" alt="logo" />}
                 />
             </div>    

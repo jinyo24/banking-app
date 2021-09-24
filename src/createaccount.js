@@ -14,7 +14,7 @@ function CreateAccount() {
 
     function validate(field, label) {
         if (!field) {
-            setStatus('Error ' + label);
+            setStatus('Error: ' + label);
             setTimeout(()=>setStatus(''),3000);
             return false;
         }
@@ -33,7 +33,7 @@ function CreateAccount() {
     function handleCreate() {
         if (!validate(name, 'name')) return;
         if (!validate(email, 'email')) return;
-        if (!validate(password, 'name')) return;
+        if (!validate(password, 'password')) return;
         if (!validatePassword(password, passwordCheck)) return;
         
         ctx.users.push({name,email,password,balance:100});
@@ -56,8 +56,9 @@ function CreateAccount() {
             <div className="bgPage bgCreateAccount">
                 <Card
                     header = "Create Account Page"
-                    title = "Add one or multiple accounts"
-                    status = {status}
+                    // title = "Add one or multiple accounts"
+                    status = {<p className="errorMsg" style={ {color:"darkred",
+                        marginTop: "10px"}}>{status}</p>}
                     body = {show ? (
                         <>
                             <div className="mb-3">

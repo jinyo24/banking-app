@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 
 //Routing & Context
@@ -8,7 +7,7 @@ import {BrowserRouter, HashRouter, Route, NavLink, Switch, UserContext} from './
 import NavBar from './components/navbar.js';
 import Home from './home';
 import CreateAccount from './createaccount.js';
-import Login from './login';
+import Deposit from './deposit.js';
 
 function App() {
   return (
@@ -18,8 +17,11 @@ function App() {
         <UserContext.Provider value={{users:[{name:'yaniel',email:'yaniel@gmail.com',password:'secret',balance:100}]}}>
           
             <Route path="/" exact component={Home}/>
-            <Route path="/createaccount" exact component={CreateAccount}/>
-            <Route path="/login" exact component={Login}/>
+            <Route path="/createaccount" component={CreateAccount}/>
+            {/* <Route path="/login" component={Login}/> */}
+            <Route path="/deposit" component={Deposit}/>
+            <Route path="/withdraw" component={CreateAccount}/>
+            <Route path="/alldata" component={CreateAccount}/>
           
         </UserContext.Provider>
       </BrowserRouter>
