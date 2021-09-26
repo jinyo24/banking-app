@@ -13,7 +13,6 @@ function CreateAccount() {
     const [btnDisable, setBtnDisable] = React.useState(true);
     
     const {users, setUsers} = React.useContext(UserContext);
-    const [currentUser, setCurrentUser] = useState(null);
 
     let usr = users;     
 
@@ -77,24 +76,24 @@ function CreateAccount() {
                 <Card
                     header = "Create Account Page"
                     // title = "Add one or multiple accounts"
-                    status = {<p className="errorMsg" style={ {color:"darkred",
-                        marginTop: "10px"}}>{status}</p>}
+                    status = {status ? (<p className="alert alert-danger" role="alert" style={ {
+                    marginTop: "10px"}}>{status}</p>) : (null)}
                     body = {show ? (
                         <>
                             <div className="mb-3">
-                                <label for="name" className="form-label">Name</label>
+                                <label className="form-label">Name</label>
                                 <input type="text" className="form-control" id="name" placeholder="username" value={name} onChange={(e)=>setName(e.currentTarget.value)}/>                          
                             </div>
                             <div className="mb-3">
-                                <label for="email" className="form-label">Email</label>
+                                <label className="form-label">Email</label>
                                 <input type="email" className="form-control" id="email" placeholder="name@example.com" value={email} onChange={(e)=>setEmail(e.currentTarget.value)}/>
                             </div>
                             <div className="mb-3">
-                                <label for="password" className="form-label">Password</label>
+                                <label className="form-label">Password</label>
                                 <input type="password" className="form-control" id="password" placeholder="Enter your password" value={password} onChange={(e)=>setPassword(e.currentTarget.value)}/>
                             </div>
                             <div className="mb-3">
-                                <label for="passwordCheck" className="form-label">Confirm your Password</label>
+                                <label className="form-label">Confirm your Password</label>
                                 <input type="password" className="form-control" id="passwordCheck" placeholder="Enter your password" value={passwordCheck} onChange={(e)=>setPasswordCheck(e.currentTarget.value)}/>
                             </div>
                             <div class="col-auto">

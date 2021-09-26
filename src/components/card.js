@@ -13,7 +13,7 @@ function Card(props) {
                     {props.title && (<h1 className="card-title">{props.title}</h1>)}
                     {props.text && (<p className="card-text">{props.text}</p>)}
                     {props.body}
-                    {props.status && (<div id="createStatus">{props.status}</div>)}
+                    {props.status && (<div>{props.status}</div>)}
                 </div>
             </div>
         </>
