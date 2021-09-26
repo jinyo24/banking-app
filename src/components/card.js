@@ -10,7 +10,7 @@ function Card(props) {
             <div className={classes()} style= {{width:"50%", minWidth:"300px", maxWidth: "550px", marginTop: "100px"}}>
                 <div className="card-header bg-info">{props.header}</div>
                 <div className="card-body">
-                    {props.title && (<h5 className="card-title">{props.title}</h5>)}
+                    {props.title && (<h1 className="card-title">{props.title}</h1>)}
                     {props.text && (<p className="card-text">{props.text}</p>)}
                     {props.body}
                     {props.status && (<div id="createStatus">{props.status}</div>)}

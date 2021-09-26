@@ -1,21 +1,48 @@
 import React from 'react';
 import Card from './components/card';
 import { UserContext } from "./context";
-import imgHome from './images/imgHome.jpg'; 
 
-function Home() {
-    const ctx = React.useContext(UserContext);
+function AllData() {
+    const {users} = React.useContext(UserContext);
     return (
         <>
-            <div className="bgPage bgHome">
-                <Card
-                    header = "Welcome Page"
-                    title = "This is your bank"
-                    body = {<img src={imgHome} className="img-fluid" alt="logo" />}
-                />
+            <div className="bgPage bgAllData ">
+                <div className="card mb-3 shadow" style= {{width:"98%", minWidth:"300px", marginTop: "100px"}}>
+                <div className="card-header bg-info">All Data</div>
+                <div className="card-body text-body">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Name</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Password</th>
+                            <th scope="col">Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {users.users.map((element,i) => {                                 
+                                if (i!==0)
+                                {console.log(element.password);
+                                    return (
+                                    <tr>
+                                        <th scope="row">{i}</th>
+                                        <td>{element.name}</td>
+                                        <td>{element.email}</td>
+                                        <td>{element.password}</td>
+                                        <td>{element.balance}</td>
+                                    </tr>
+                                    )} return (console.log("empty default element"));
+                                })
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+                
             </div>    
         </>
     );
 }
 
-export default Home;
+export default AllData;

@@ -1,55 +1,12 @@
 import React from 'react';
 import { UserContext } from "./context";
 import Card from './components/card.js'
+import {UseContext} from 'react';
 
 function Deposit() {
-/*  const [show, setShow] = React.useState(true);
-    const [status, setStatus] = React.useState('');
-    const [name, setName] = React.useState('');
-    const [email, setEmail] = React.useState('');
-    const [password, setPassword] = React.useState('');
-    const [passwordCheck, setPasswordCheck] = React.useState(''); */
     
-    const ctx = React.useContext(UserContext);
+    const {users} = React.useContext(UserContext);
 
-/*     function validate(field, label) {
-        if (!field) {
-            setStatus('Error ' + label);
-            setTimeout(()=>setStatus(''),3000);
-            return false;
-        }
-        return true;
-    };
-
-    function validatePassword(pwd1, pwd2) {
-        if (pwd1 !== pwd2) {
-            setStatus('Error: the password does not match');
-            setTimeout(()=>setStatus(''),3000);
-            return false;
-        }
-        return true;
-    };
-
-    function handleCreate() {
-        if (!validate(name, 'name')) return;
-        if (!validate(email, 'email')) return;
-        if (!validate(password, 'name')) return;
-        if (!validatePassword(password, passwordCheck)) return;
-        
-        ctx.users.push({name,email,password,balance:100});
-        // alert('Account created');
-        setShow(false);
-    };
-
-    function clearForm() {
-        setName('');
-        setEmail('');
-        setPassword('');
-        setPasswordCheck('');
-        setStatus('');
-        setShow(true);
-        // alert('All clear');
-    }; */
 
     return (
         <>
@@ -63,7 +20,7 @@ function Deposit() {
                             <div className="mb-3">
                                 <label for="balance" className="form-label">BALANCE:</label>
                                 <br/>
-                                <strong><h2 className="ms-auto">${ctx.users[ctx.users.length - 1].balance}</h2></strong>
+                                <strong><h2 className="ms-auto">{users.users[users.users.length-1].balance}</h2></strong>
                             </div>
                             <br/>
                             <div className="mb-3">

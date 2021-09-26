@@ -1,6 +1,14 @@
 import { NavLink } from "react-router-dom";
+import { UserContext } from "../context";
+import React from "react";
+import { useEffect, useState } from 'react';
+
 
 function NavBar (){
+    const {users} = React.useContext(UserContext);
+
+    
+    
     return (
         <>
         <nav className="navbar navbar-expand-md navbar-dark bg-dark shadow rounded d-block fixed-top mt-2 mx-auto" style={{width: "98%"}}>
@@ -22,8 +30,11 @@ function NavBar (){
                         <NavLink className="navAllData nav-link ms-2 ps-2 rounded" to="/alldata" data-bs-placement="buttom" title="This is a record of all registered user">All Data</NavLink>
                     </div>
                 </div>
+                {/* <p className="text-light">{ctx.users[ctx.users.length-1].name}</p> */}
             </div>
+                {/* users.users[users.users.length-1].name */}
         </nav>
+        
         </>);
 }
 

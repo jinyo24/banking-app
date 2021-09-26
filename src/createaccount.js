@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserContext } from "./context";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Card from './components/card.js'
 
 function CreateAccount() {
@@ -12,7 +12,10 @@ function CreateAccount() {
     const [passwordCheck, setPasswordCheck] = React.useState('');
     const [btnDisable, setBtnDisable] = React.useState(true);
     
-    const ctx = React.useContext(UserContext);
+    const {users, setUsers} = React.useContext(UserContext);
+    const [currentUser, setCurrentUser] = useState(null);
+
+    let usr = users;     
 
     function validate(field, label) {
         if (!field) {
@@ -45,9 +48,15 @@ function CreateAccount() {
         if (!validate(email, 'email')) return;
         if (!validate(password, 'password')) return;
         if (!validatePassword(password, passwordCheck)) return;
-        
-        ctx.users.push({name,email,password,balance:100});
-        // alert('Account created');
+
+        usr.users.push({name,email,password,balance:100});
+        setUsers(usr);
+        // alert(JSON.stringify(usr));
+        /* usr.push({name,email,password,balance:100});  
+        setUsers(usr); */
+                        
+        // ctx.users.push({name,email,password,balance:100});
+        alert(JSON.stringify(users));
         setShow(false);
     };
 
