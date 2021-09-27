@@ -7,7 +7,7 @@ function Card(props) {
     
     return (
         <>
-            <div className={classes()} style= {{width:"50%", minWidth:"300px", maxWidth: "550px", marginTop: "100px"}}>
+            <div className={classes()} style= {{width:"50%", minWidth:"300px", maxWidth: "550px", marginTop: "75px"}}>
                 <div className="card-header bg-info">{props.header}</div>
                 <div className="card-body">
                     {props.title && (<h1 className="card-title">{props.title}</h1>)}

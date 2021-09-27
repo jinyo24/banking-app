@@ -6,7 +6,7 @@ function AllData() {
     return (
         <>
             <div className="bgPage bgAllData ">
-                <div className="card mb-3 shadow" style= {{width:"98%", minWidth:"300px", marginTop: "100px"}}>
+                <div className="card mb-3 shadow" style= {{width:"98%", minWidth:"300px", marginTop: "75px"}}>
                 <div className="card-header bg-info">All Data</div>
                 <div className="card-body text-body">
                     <table class="table">

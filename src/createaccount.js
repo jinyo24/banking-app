@@ -30,6 +30,10 @@ function CreateAccount() {
             setStatus('Error: the password does not match');
             setTimeout(()=>setStatus(''),3000);
             return false;
+        } else if(pwd1.length < 8) {
+            setStatus('Error: the password must be at laest 8 characters');
+            setTimeout(()=>setStatus(''),3000);
+            return false; 
         }
         return true;
     };
