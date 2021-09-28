@@ -59,7 +59,7 @@ function Deposit() {
                             <div className="mb-3">
                                 <label className="form-label">CURRENT BALANCE:</label>
                                 <br/>
-                                <strong><h2 className="ms-auto">{balance}</h2></strong>
+                                <strong><h2 className="ms-auto">{ isNaN(balance) ? 0 : balance }</h2></strong>
                                 <br/>
                                 <label className="form-label">FUTURE BALANCE:</label>
                                 <br/>
@@ -67,7 +67,7 @@ function Deposit() {
                             </div>
                             <br/>
                             <div className="mb-3">
-                                <label className="form-label">DEPOSIT AMOUNT:</label>
+                                <label className="form-label">AMOUNT TO DEPOSIT:</label>
                                 <input type="number" required min="0" className="form-control" id="depositAmount" placeholder="10" value={deposit} onChange={(e)=>setDeposit(e.currentTarget.value)}/>
                                 
                             </div>

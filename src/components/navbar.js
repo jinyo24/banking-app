@@ -1,14 +1,13 @@
 import { NavLink } from "react-router-dom";
-import { UserContext } from "../context";
 import React from "react";
-import { useEffect, useState } from 'react';
+import { useContext, useState } from "react";
+import { UserContext } from "../context";
 
 
 function NavBar (){
-    const {users} = React.useContext(UserContext);
 
-    
-    
+
+
     return (
         <>
         <nav className="navbar navbar-expand-md navbar-dark bg-dark shadow rounded d-block fixed-top mt-2 py-0 mx-auto" style={{width: "98%"}}>
@@ -24,15 +23,22 @@ function NavBar (){
                     <div className="navbar-nav ms-auto pt-1 pb-1">
                         <NavLink className="navCreatAccount nav-link ms-2 ps-2 rounded" to="/createaccount" aria-current="page" data-bs-toggle="tooltip" data-bs-placement="buttom" title="Enter your user data to create your profile">Create Account</NavLink>
                         {/* <NavLink className="nav-link" to="/login">Login</NavLink> */}
+                       
                         <NavLink className="navDeposit nav-link ms-2 ps-2 rounded" to="/deposit" data-bs-toggle="tooltip" data-bs-placement="buttom" title="Add a desire amount to your balance">Deposit</NavLink>
                         <NavLink className="navWithdraw nav-link ms-2 ps-2 rounded" to="/withdraw" data-bs-placement="buttom" title="Retire a desire amount to your balance">Withdraw</NavLink>
+
+                        {/* { ctx.users.users.length > 1 ? 
+                            (<><NavLink className="navDeposit nav-link ms-2 ps-2 rounded" to="/deposit" data-bs-toggle="tooltip" data-bs-placement="buttom" title="Add a desire amount to your balance">Deposit</NavLink>
+                             <NavLink className="navWithdraw nav-link ms-2 ps-2 rounded" to="/withdraw" data-bs-placement="buttom" title="Retire a desire amount to your balance">Withdraw</NavLink>
+                            </>)
+                            : (<></>)
+                        } */}
+                        
                         {/* <NavLink className="nav-link ms-2" to="/balance">Balance</NavLink> */}
                         <NavLink className="navAllData nav-link ms-2 ps-2 rounded" to="/alldata" data-bs-placement="buttom" title="This is a record of all registered user">All Data</NavLink>
                     </div>
                 </div>
-                {/* <p className="text-light">{ctx.users[ctx.users.length-1].name}</p> */}
             </div>
-                {/* users.users[users.users.length-1].name */}
         </nav>
         
         </>);

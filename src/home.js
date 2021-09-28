@@ -1,10 +1,9 @@
 import React from 'react';
 import Card from './components/card';
-import { UserContext } from "./context";
 import imgHome from './images/imgHome.svg'; 
 
 function Home() {
-    // const ctx = React.useContext(UserContext);
+
     return (
         <>
             <div className="bgPage bgHome">

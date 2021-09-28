@@ -1,6 +1,6 @@
 import React from 'react';
 import { UserContext } from "./context";
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import Card from './components/card.js'
 
 function CreateAccount() {
