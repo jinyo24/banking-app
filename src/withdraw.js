@@ -10,7 +10,7 @@ function Withdraw() {
     const [balance, setBalance] = useState(parseFloat(users.users[users.users.length-1].balance))
     const [tempBalance, setTempBalance] = useState(users.users[users.users.length-1].balance);
     console.log(balance);
-    const [withdraw, setDeposit] = useState(null);
+    const [withdraw, setWithdraw] = useState(undefined);
     console.log(withdraw);
     const [status, setStatus] = React.useState('');
     const [btnDisable, setBtnDisable] = React.useState(true);
@@ -25,7 +25,7 @@ function Withdraw() {
     };
 
     function clearForm() {
-        setDeposit(0);
+        setWithdraw(0);
         setBtnDisable(true);
     };
 
@@ -68,7 +68,7 @@ function Withdraw() {
                             <br/>
                             <div className="mb-3">
                                 <label className="form-label">AMOUNT TO WITHDRAW:</label>
-                                <input type="number" required min="0" className="form-control" id="depositAmount" placeholder="10" value={withdraw} onChange={(e)=>setDeposit(e.currentTarget.value)}/>
+                                <input type="number" required min="0" className="form-control" id="depositAmount" placeholder="10" value={withdraw} onChange={(e)=>setWithdraw(e.currentTarget.value)}/>
                                 
                             </div>
                             <div class="col-auto">

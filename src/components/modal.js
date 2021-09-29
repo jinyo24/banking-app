@@ -1,5 +1,5 @@
 export function Modal(props){
-return (<>    <div class="modal fade" id={props.id} tabindex="-1" aria-labelledby={props.labelledby} aria-hidden="true">
+return (<>    <div class="modal fade" id={props.id} tabIndex="-1" aria-labelledby={props.labelledby} aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
         <div class="modal-header">

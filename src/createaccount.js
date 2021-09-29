@@ -56,16 +56,6 @@ function CreateAccount() {
         usr.users.push({name,email,password,balance:100});
         setUsers(usr);
         setCurrentUser(usr.users.length-1);
-        // updateUsers(usr);
-        // updateCurretUser(usr.users.length-1);
-        // setUsers(usr);
-        
-        // alert(JSON.stringify(usr));
-        /* usr.push({name,email,password,balance:100});  
-        setUsers(usr); */
-                        
-        // ctx.users.push({name,email,password,balance:100});
-        alert(JSON.stringify(users));
         setShow(false);
     };
 

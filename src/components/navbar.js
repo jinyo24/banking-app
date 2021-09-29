@@ -6,7 +6,36 @@ import { UserContext } from "../context";
 
 function NavBar (){
 
-    const {users, currentUser} = useContext(UserContext);
+    const {users, currentUser, setCurrentUser} = useContext(UserContext);
+
+    function handleUserChange(props) {
+        let counter = currentUser;
+
+        switch (currentUser) {
+            case 0:
+                return;
+            case 1:
+                counter = users.users.length-1;
+                setCurrentUser(counter);
+                break;
+            case users.users.length-1:
+                counter = 1;
+                setCurrentUser(counter);
+                break;
+            default:            
+                break;       
+        }
+
+        if(props) {
+            counter = currentUser + 1;
+            console.log("Positivo:" + counter);
+            setCurrentUser(counter);
+        } else {
+            counter = currentUser - 1;
+            console.log("Negativo:" + counter);
+            setCurrentUser(counter);
+        }  
+    };
     
 
     return (
@@ -33,8 +62,17 @@ function NavBar (){
                             </>)
                             : (<></>)
                         }
-                                                
-                        <p className="text-muted ms-2 my-auto rounded">{currentUser===0 ? "username" : users.users[currentUser].name}</p>
+
+                        <div>
+                            <button className="btn btn-dark" onClick={()=>handleUserChange(false)}>
+                                <i className="bi bi-chevron-left text-white"></i>
+                            </button>
+                            <p className="text-muted ms-2 my-auto rounded">{currentUser===0 ? "username" : users.users[currentUser].name}</p>
+                            <p className="text-muted ms-2 my-auto rounded">{currentUser}</p>
+                            <button className="btn btn-dark" onClick={()=>handleUserChange(true)}>
+                                <i className="bi bi-chevron-right text-white"></i>
+                            </button>
+                        </div> 
                     </div>
                 </div>
             </div>

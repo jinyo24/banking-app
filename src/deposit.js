@@ -10,7 +10,7 @@ function Deposit() {
     const [balance, setBalance] = useState(parseFloat(users.users[users.users.length-1].balance))
     const [tempBalance, setTempBalance] = useState(users.users[users.users.length-1].balance);
     console.log(balance);
-    const [deposit, setDeposit] = useState(null);
+    const [deposit, setDeposit] = useState(undefined);
     console.log(deposit);
     const [status, setStatus] = React.useState('');
     const [btnDisable, setBtnDisable] = React.useState(true);

@@ -24,12 +24,12 @@ function AllData() {
                                 if (i!==0)
                                 {console.log(element.password);
                                     return (
-                                    <tr>
-                                        <th scope="row">{i}</th>
-                                        <td>{element.name}</td>
-                                        <td>{element.email}</td>
-                                        <td>{element.password}</td>
-                                        <td>{element.balance}</td>
+                                    <tr key={element.id}>
+                                        <th scope="row" key={element.id}>{i}</th>
+                                        <td key={element.id}>{element.name}</td>
+                                        <td key={element.id}>{element.email}</td>
+                                        <td key={element.id}>{element.password}</td>
+                                        <td key={element.id}>{element.balance}</td>
                                     </tr>
                                     )} return (console.log("empty default element"));
                                 })
