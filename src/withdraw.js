@@ -48,7 +48,7 @@ function Withdraw() {
 
     return (
         <>
-            <div className="bgPage bgDeposit">
+            <div className="bgPage bgWithdraw">
                 <Card
                     header = "Deposit"
                     // title = "Add one or multiple accounts"

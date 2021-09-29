@@ -1,12 +1,13 @@
 import { NavLink } from "react-router-dom";
 import React from "react";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { UserContext } from "../context";
 
 
 function NavBar (){
 
-
+    const {users, currentUser} = useContext(UserContext);
+    
 
     return (
         <>
@@ -22,20 +23,18 @@ function NavBar (){
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                     <div className="navbar-nav ms-auto pt-1 pb-1">
                         <NavLink className="navCreatAccount nav-link ms-2 ps-2 rounded" to="/createaccount" aria-current="page" data-bs-toggle="tooltip" data-bs-placement="buttom" title="Enter your user data to create your profile">Create Account</NavLink>
-                        {/* <NavLink className="nav-link" to="/login">Login</NavLink> */}
-                       
-                        <NavLink className="navDeposit nav-link ms-2 ps-2 rounded" to="/deposit" data-bs-toggle="tooltip" data-bs-placement="buttom" title="Add a desire amount to your balance">Deposit</NavLink>
-                        <NavLink className="navWithdraw nav-link ms-2 ps-2 rounded" to="/withdraw" data-bs-placement="buttom" title="Retire a desire amount to your balance">Withdraw</NavLink>
+                        {/* <NavLink className="nav-link" to="/login">Login</NavLink> */}                                       
 
-                        {/* { ctx.users.users.length > 1 ? 
-                            (<><NavLink className="navDeposit nav-link ms-2 ps-2 rounded" to="/deposit" data-bs-toggle="tooltip" data-bs-placement="buttom" title="Add a desire amount to your balance">Deposit</NavLink>
-                             <NavLink className="navWithdraw nav-link ms-2 ps-2 rounded" to="/withdraw" data-bs-placement="buttom" title="Retire a desire amount to your balance">Withdraw</NavLink>
+                        {users.users.length > 1 ? 
+                            (<>
+                                <NavLink className="navDeposit nav-link ms-2 ps-2 rounded" to="/deposit" data-bs-toggle="tooltip" data-bs-placement="buttom" title="Add a desire amount to your balance">Deposit</NavLink>
+                                <NavLink className="navWithdraw nav-link ms-2 ps-2 rounded" to="/withdraw" data-bs-placement="buttom" title="Retire a desire amount from your balance">Withdraw</NavLink>
+                                <NavLink className="navAllData nav-link ms-2 ps-2 rounded" to="/alldata" data-bs-placement="buttom" title="This is a record of all registered users">All Data</NavLink>
                             </>)
                             : (<></>)
-                        } */}
-                        
-                        {/* <NavLink className="nav-link ms-2" to="/balance">Balance</NavLink> */}
-                        <NavLink className="navAllData nav-link ms-2 ps-2 rounded" to="/alldata" data-bs-placement="buttom" title="This is a record of all registered user">All Data</NavLink>
+                        }
+                                                
+                        <p className="text-muted ms-2 my-auto rounded">{currentUser===0 ? "username" : users.users[currentUser].name}</p>
                     </div>
                 </div>
             </div>
