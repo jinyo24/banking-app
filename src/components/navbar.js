@@ -57,23 +57,26 @@ function NavBar (){
                                 <NavLink className="navDeposit nav-link ms-2 ps-2 rounded" to="/deposit" data-bs-toggle="tooltip" data-bs-placement="buttom" title="Add a desire amount to your balance">Deposit</NavLink>
                                 <NavLink className="navWithdraw nav-link ms-2 ps-2 rounded" to="/withdraw" data-bs-placement="buttom" title="Retire a desire amount from your balance">Withdraw</NavLink>
                                 <NavLink className="navAllData nav-link ms-2 ps-2 rounded" to="/alldata" data-bs-placement="buttom" title="This is a record of all registered users">All Data</NavLink>
+                                
+                                <div className="container" style={{width: "200px"}}>
+                                    <div className="row align-items-center"> 
+                                        <button className="col-3 btn btn-dark" onClick={()=>handleUserChange(false)}>
+                                            <i className="bi bi-chevron-left text-white"></i>
+                                        </button>
+                                        <div className="col text-muted text-center text-truncate">
+                                            {currentUser === 0 ? "username" : users.users[currentUser].name}
+                                        </div>
+                                        <button className="col-3 btn btn-dark" onClick={()=>handleUserChange(true)}>
+                                            <i className="bi bi-chevron-right text-white"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            
                             </>)
                             : (<></>)
                         }
 
-                        <div className="container" style={{width: "150px"}}>
-                            <div className="row align-items-center"> 
-                                <button className="col-3 btn btn-dark" onClick={()=>handleUserChange(false)}>
-                                    <i className="bi bi-chevron-left text-white"></i>
-                                </button>
-                                <div className="col text-muted text-center text-truncate">
-                                    {currentUser===0 ? "username" : users.users[currentUser].name}
-                                </div>
-                                <button className="col-3 btn btn-dark" onClick={()=>handleUserChange(true)}>
-                                    <i className="bi bi-chevron-right text-white"></i>
-                                </button>
-                            </div>
-                        </div>     
+     
                     </div>
                 </div>
 
