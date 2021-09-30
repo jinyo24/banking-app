@@ -12,8 +12,14 @@ import { useState } from "react";
 const UserContext = React.createContext(null);
 
 function ContextProvider({children}){
-  const [users, setUsers] = useState({users:[{name:"", email:"", password: "", balance: ""}]});
-  const [currentUser, setCurrentUser] = useState(0);
+  const [users, setUsers] = useState({
+    users:
+      [{name:"", email:"", password: "", balance: ""},
+      {name:"yaniel", email:"", password: "", balance: 100},
+      {name:"ana", email:"", password: "", balance: 100},
+      {name:"pedro", email:"", password: "", balance: 100},
+    ]});
+  const [currentUser, setCurrentUser] = useState(users.users.length-1);
   // function setCurrentUser
 
   function updateCurretUser(props){

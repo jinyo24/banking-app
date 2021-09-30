@@ -6,28 +6,13 @@ import { Modal } from './components/modal';
 
 function Withdraw() {
     
-    const {users} = React.useContext(UserContext);
-    const [balance, setBalance] = useState(parseFloat(users.users[users.users.length-1].balance))
-    const [tempBalance, setTempBalance] = useState(users.users[users.users.length-1].balance);
-    console.log(balance);
+    const {users, currentUser} = React.useContext(UserContext);
+    const [affectedUser, setaffectedUser] = useState(currentUser);
+    const [balance, setBalance] = useState(parseFloat(users.users[currentUser].balance))
+    const [tempBalance, setTempBalance] = useState(users.users[currentUser].balance);
     const [withdraw, setWithdraw] = useState(undefined);
-    console.log(withdraw);
     const [status, setStatus] = React.useState('');
     const [btnDisable, setBtnDisable] = React.useState(true);
-
-    function validate(amount) {
-        if (!amount || amount<0) {
-            setStatus('Please enter a positive number');
-            setTimeout(()=>setStatus(''),3000);
-            return false;
-        }
-        return true;
-    };
-
-    function clearForm() {
-        setWithdraw(0);
-        setBtnDisable(true);
-    };
 
     useEffect(()=>{
         if (validate(withdraw)) 
@@ -39,10 +24,38 @@ function Withdraw() {
         }   
     },[balance, withdraw]);
 
+    useEffect(()=>{
+        if (affectedUser !== currentUser){
+            setaffectedUser(currentUser);
+            setBalance(users.users[currentUser].balance);
+            setTempBalance(users.users[currentUser].balance);
+        }
+    }, [affectedUser, currentUser, balance, users.users]);
+
+    function validate(amount) {
+        if (!amount || amount<0) {
+            setStatus('Please enter a positive number');
+            setTimeout(()=>setStatus(''),3000);
+            return false;
+        }
+        if (amount>balance) {
+            setStatus('The amount can not be higher than your current balance');
+            setTimeout(()=>setStatus(''),3000);
+            return false;
+        }
+
+        return true;
+    };
+
+    function clearForm() {
+        setWithdraw(0);
+        setBtnDisable(true);
+    };
+
     function handleClick() {
         if(!validate(withdraw)) return;
-        users.users[users.users.length-1].balance = parseFloat(balance) - parseFloat(withdraw);
-        setBalance(parseFloat(users.users[users.users.length-1].balance));
+        users.users[currentUser].balance = parseFloat(balance) - parseFloat(withdraw);
+        setBalance(parseFloat(users.users[currentUser].balance));
         clearForm();
     };
 
