@@ -6,30 +6,16 @@ import { Modal } from './components/modal';
 
 function Withdraw() {
     
-    const {users} = React.useContext(UserContext);
-    const [balance, setBalance] = useState(parseFloat(users.users[users.users.length-1].balance))
-    const [tempBalance, setTempBalance] = useState(users.users[users.users.length-1].balance);
-    console.log(balance);
-    const [withdraw, setDeposit] = useState(null);
-    console.log(withdraw);
+    const {users, currentUser} = React.useContext(UserContext);
+    const [affectedUser, setaffectedUser] = useState(currentUser);
+    const [balance, setBalance] = useState(parseFloat(users.users[currentUser].balance))
+    const [tempBalance, setTempBalance] = useState(users.users[currentUser].balance);
+    const [withdraw, setWithdraw] = useState(undefined);
     const [status, setStatus] = React.useState('');
     const [btnDisable, setBtnDisable] = React.useState(true);
 
-    function validate(amount) {
-        if (!amount || amount<0) {
-            setStatus('Please enter a positive number');
-            setTimeout(()=>setStatus(''),3000);
-            return false;
-        }
-        return true;
-    };
-
-    function clearForm() {
-        setDeposit(0);
-        setBtnDisable(true);
-    };
-
     useEffect(()=>{
+        
         if (validate(withdraw)) 
             {setBtnDisable(false); 
             setTempBalance((parseFloat(balance) - parseFloat(withdraw)))
@@ -39,16 +25,44 @@ function Withdraw() {
         }   
     },[balance, withdraw]);
 
+    useEffect(()=>{
+        if (affectedUser !== currentUser){
+            setaffectedUser(currentUser);
+            setBalance(users.users[currentUser].balance);
+            setTempBalance(users.users[currentUser].balance);
+        }
+    }, [affectedUser, currentUser, balance, users.users]);
+
+    function validate(amount) {
+        if (!amount || amount<=0) {
+            setStatus('Please enter a positive number');
+            setTimeout(()=>setStatus(''),3000);
+            return false;
+        }
+        if (amount>balance) {
+            setStatus('The amount can not be higher than your current balance');
+            setTimeout(()=>setStatus(''),3000);
+            return false;
+        }
+
+        return true;
+    };
+
+    function clearForm() {
+        setWithdraw(0);
+        setBtnDisable(true);
+    };
+
     function handleClick() {
         if(!validate(withdraw)) return;
-        users.users[users.users.length-1].balance = parseFloat(balance) - parseFloat(withdraw);
-        setBalance(parseFloat(users.users[users.users.length-1].balance));
+        users.users[currentUser].balance = parseFloat(balance) - parseFloat(withdraw);
+        setBalance(parseFloat(users.users[currentUser].balance));
         clearForm();
     };
 
     return (
         <>
-            <div className="bgPage bgDeposit">
+            <div className="bgPage bgWithdraw">
                 <Card
                     header = "Deposit"
                     // title = "Add one or multiple accounts"
@@ -68,7 +82,7 @@ function Withdraw() {
                             <br/>
                             <div className="mb-3">
                                 <label className="form-label">AMOUNT TO WITHDRAW:</label>
-                                <input type="number" required min="0" className="form-control" id="depositAmount" placeholder="10" value={withdraw} onChange={(e)=>setDeposit(e.currentTarget.value)}/>
+                                <input type="number" required min="0" className="form-control" id="depositAmount" placeholder="10" value={withdraw} onChange={(e)=>setWithdraw(e.currentTarget.value)}/>
                                 
                             </div>
                             <div class="col-auto">

@@ -2,14 +2,19 @@ import React from 'react';
 import { UserContext } from "./context";
 
 function AllData() {
-    const {users} = React.useContext(UserContext);
+    const {users, currentUser, setCurrentUser} = React.useContext(UserContext);
+
+    function handleClick (id){ 
+        setCurrentUser(parseFloat(id));
+    }
+
     return (
         <>
             <div className="bgPage bgAllData ">
                 <div className="card mb-3 shadow" style= {{width:"98%", minWidth:"300px", marginTop: "75px"}}>
                 <div className="card-header bg-info">All Data</div>
                 <div className="card-body text-body">
-                    <table class="table">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                             <th scope="col">#</th>
@@ -21,15 +26,14 @@ function AllData() {
                         </thead>
                         <tbody>
                             {users.users.map((element,i) => {                                 
-                                if (i!==0)
-                                {console.log(element.password);
-                                    return (
-                                    <tr>
-                                        <th scope="row">{i}</th>
-                                        <td>{element.name}</td>
-                                        <td>{element.email}</td>
-                                        <td>{element.password}</td>
-                                        <td>{element.balance}</td>
+                                if (i!==0) {
+                                    return (   
+                                    <tr className={currentUser === i ? "table-success" : ""} key={element.id} id={i} onClick={(e)=>handleClick(e.currentTarget.id)}>
+                                        <th scope="row" key={element.id}>{i}</th>
+                                        <td key={element.id}>{element.name}</td>
+                                        <td key={element.id}>{element.email}</td>
+                                        <td key={element.id}>{element.password}</td>
+                                        <td key={element.id}>{element.balance}</td>
                                     </tr>
                                     )} return (console.log("empty default element"));
                                 })

@@ -6,17 +6,34 @@ import { Modal } from './components/modal';
 
 function Deposit() {
     
-    const {users} = React.useContext(UserContext);
-    const [balance, setBalance] = useState(parseFloat(users.users[users.users.length-1].balance))
-    const [tempBalance, setTempBalance] = useState(users.users[users.users.length-1].balance);
-    console.log(balance);
-    const [deposit, setDeposit] = useState(null);
-    console.log(deposit);
+    const {users, currentUser} = React.useContext(UserContext);
+    const [affectedUser, setaffectedUser] = useState(currentUser);
+    const [balance, setBalance] = useState(parseFloat(users.users[currentUser].balance))
+    const [tempBalance, setTempBalance] = useState(users.users[currentUser].balance);
+    const [deposit, setDeposit] = useState(undefined);
     const [status, setStatus] = React.useState('');
     const [btnDisable, setBtnDisable] = React.useState(true);
 
+    useEffect(()=>{
+        if (validate(deposit)) {
+            setBtnDisable(false); 
+            setTempBalance((parseFloat(balance) + parseFloat(deposit)))
+        }
+        else {
+            setBtnDisable(true);             
+        }   
+    },[balance, deposit]);
+
+    useEffect(()=>{
+        if (affectedUser !== currentUser){
+            setaffectedUser(currentUser);
+            setBalance(users.users[currentUser].balance);
+            setTempBalance(users.users[currentUser].balance);
+        }
+    }, [affectedUser, currentUser, balance, users.users]);
+
     function validate(amount) {
-        if (!amount || amount<0) {
+        if (!amount || amount<=0) {
             setStatus('Please enter a positive number');
             setTimeout(()=>setStatus(''),3000);
             return false;
@@ -29,20 +46,10 @@ function Deposit() {
         setBtnDisable(true);
     };
 
-    useEffect(()=>{
-        if (validate(deposit)) 
-            {setBtnDisable(false); 
-            setTempBalance((parseFloat(balance) + parseFloat(deposit)))
-            }
-        else {
-            setBtnDisable(true);             
-        }   
-    },[balance, deposit]);
-
     function handleClick() {
         if(!validate(deposit)) return;
-        users.users[users.users.length-1].balance = parseFloat(balance) + parseFloat(deposit);
-        setBalance(parseFloat(users.users[users.users.length-1].balance));
+        users.users[currentUser].balance = parseFloat(balance) + parseFloat(deposit);
+        setBalance(parseFloat(users.users[currentUser].balance));
         clearForm();
     };
 
