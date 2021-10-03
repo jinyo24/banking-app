@@ -33,7 +33,7 @@ function Deposit() {
     }, [affectedUser, currentUser, balance, users.users]);
 
     function validate(amount) {
-        if (!amount || amount<0) {
+        if (!amount || amount<=0) {
             setStatus('Please enter a positive number');
             setTimeout(()=>setStatus(''),3000);
             return false;
